@@ -1,54 +1,64 @@
 #include <iostream>
-#include <cctype> // For the isdigit() function
+#include <cmath>
+#include <cctype>
 
 using namespace std;
 
 int main() {
-    char letter;
+    char input;
 
     do {
         cout << "Enter a letter: ";
-        cin >> letter;
+        cin >> input;
 
-        if (isalpha(letter)) { // Check if the input is a letter
-            letter = toupper(letter); // Convert to uppercase
+        if (isalpha(input) || input == 'Q' || input == 'Z') {
+            if (isalpha(input)) {
+                input = toupper(input); // convert to uppercase
 
-            switch (letter) {
-            case 'A': case 'B': case 'C':
-                cout << "The letter " << letter << " corresponds to the digit 2 on the phone." << endl;
-                break;
-            case 'D': case 'E': case 'F':
-                cout << "The letter " << letter << " corresponds to the digit 3 on the phone." << endl;
-                break;
-            case 'G': case 'H': case 'I':
-                cout << "The letter " << letter << " corresponds to the digit 4 on the phone." << endl;
-                break;
-            case 'J': case 'K': case 'L':
-                cout << "The letter " << letter << " corresponds to the digit 5 on the phone." << endl;
-                break;
-            case 'M': case 'N': case 'O':
-                cout << "The letter " << letter << " corresponds to the digit 6 on the phone." << endl;
-                break;
-            case 'P': case 'R': case 'S':
-                cout << "The letter " << letter << " corresponds to the digit 7 on the phone." << endl;
-                break;
-            case 'T': case 'U': case 'V':
-                cout << "The letter " << letter << " corresponds to the digit 8 on the phone." << endl;
-                break;
-            case 'W': case 'X': case 'Y':
-                cout << "The letter " << letter << " corresponds to the digit 9 on the phone." << endl;
-                break;
-            default:
-                cout << "The entered letter is not supported. Enter Q or Z to exit." << endl;
+                int result = 0;
+                if (input >= 'A' && input <= 'C') {
+                    result = 2;
+                }
+                else if (input >= 'D' && input <= 'F') {
+                    result = 3;
+                }
+                else if (input >= 'G' && input <= 'I') {
+                    result = 4;
+                }
+                else if (input >= 'J' && input <= 'L') {
+                    result = 5;
+                }
+                else if (input >= 'M' && input <= 'O') {
+                    result = 6;
+                }
+                else if (input >= 'P' && input <= 'S') {
+                    result = 7;
+                }
+                else if (input >= 'T' && input <= 'U') {
+                    result = 8;
+                }
+                else if (input == 'W' || input == 'X' || input == 'Y' || input == 'Z') {
+                    result = 9;
+                }
+                else {
+                    cout << "The entered letter does not correspond to any digit on the phone." << endl;
+                    continue;
+                }
+
+                cout << "The letter " << input << " corresponds to the digit " << result << " on the phone." << endl;
+
             }
+            else if (input == 'Q' || input == 'Z') {
+                cout << "Exiting." << endl;
+                break;
+            }
+
         }
-        else if (letter != 'Q' && letter != 'Z') {
-            cout << "Invalid character entered. Enter Q or Z to exit." << endl;
+        else {
+            cout << "Invalid input. Enter a letter:" << endl;
         }
 
-    } while (letter != 'Q' && letter != 'Z');
-
-    cout << "Exit." << endl;
+    } while (true);
 
     return 0;
 }

@@ -1,16 +1,19 @@
 #include <iostream>
+#include <vector>
 #include <climits> // for using the constant INT_MAX
+
+using namespace std;
 
 const int numYears = 10; // Number of years
 const int variantNumber = 1; // Your variant number
 
 int main() {
-    int profits[numYears];
+    vector<int> profits(numYears);
     int maxLossYear = 0; // Year with the largest losses
     int maxLoss = INT_MAX; // Initial value for finding the largest losses
     int sumInRange = 0; // Sum of profits within the range 0 < y < 710
 
-    std::cout << "Year\tProfit" << std::endl;
+    cout << "Year\tProfit" << endl;
 
     for (int k = 0; k < numYears; ++k) {
         int year = 2000 + k;
@@ -19,7 +22,7 @@ int main() {
         profits[k] = profit;
 
         // Displaying the year and profit
-        std::cout << year << "\t" << profit << std::endl;
+        cout << year << "\t" << profit << endl;
 
         // Calculating the sum of profits within the range 0 < y < 710
         if (profit > 0 && profit < 710) {
@@ -34,14 +37,14 @@ int main() {
     }
 
     // Displaying the sum of profits within the range 0 < y < 710
-    std::cout << "Sum of profits within the range 0 < y < 710: " << sumInRange << " monetary units" << std::endl;
+    cout << "Sum of profits within the range 0 < y < 710: " << sumInRange << " monetary units" << endl;
 
     // Displaying the year with the largest losses
     if (maxLoss < 0) {
-        std::cout << "Year with the largest losses: " << maxLossYear << std::endl;
+        cout << "Year with the largest losses: " << maxLossYear << endl;
     }
     else {
-        std::cout << "No losses were incurred." << std::endl;
+        cout << "No losses were incurred." << endl;
     }
 
     return 0;

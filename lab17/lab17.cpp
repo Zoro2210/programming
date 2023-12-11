@@ -1,27 +1,39 @@
 #include <iostream>
 #include <sstream>
 
+using namespace std;
+
 int main() {
-    std::string inputString;
+    // Enter a string
+    cout << "Enter a string: ";
+    string inputString;
+    getline(cin, inputString);
 
-    // Input a string
-    std::cout << "Enter a string: ";
-    std::getline(std::cin, inputString);
+    // Create an istringstream object for conversion
+    istringstream inputStream(inputString);
 
-    try {
-        // Attempt to convert the string to an int
-        int intValue = std::stoi(inputString);
-        std::cout << "Converted to integer: " << intValue << std::endl;
+    // Try to read the string as an int
+    int intValue;
+    inputStream >> intValue;
+
+    // Check if the conversion to int was successful
+    if (!inputStream.fail() && inputStream.eof()) {
+        cout << "This is an integer: " << intValue << endl;
     }
-    catch (const std::invalid_argument&) {
-        try {
-            // Attempt to convert the string to a float
-            float floatValue = std::stof(inputString);
-            std::cout << "Converted to float: " << floatValue << std::endl;
+    else {
+        // If conversion to int fails, try float
+        inputStream.clear(); // Clear error flags
+        inputStream.seekg(0); // Reset the stream to the beginning
+
+        float floatValue;
+        inputStream >> floatValue;
+
+        // Check if the conversion to float was successful
+        if (!inputStream.fail() && inputStream.eof()) {
+            cout << "This is a floating-point number: " << floatValue << endl;
         }
-        catch (const std::invalid_argument&) {
-            // Display an error message if conversion fails
-            std::cout << "Invalid input. Unable to convert to int or float." << std::endl;
+        else {
+            cout << "Unable to convert to a number." << endl;
         }
     }
 

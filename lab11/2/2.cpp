@@ -1,49 +1,49 @@
 #include <iostream>
+#include <cmath>
+
 using namespace std;
 
 int main() {
+    char typeOfWork;
+    double x;
 
-start:
-    char state[3];
-    cout << "Enter the abbreviation of the US state: ";
-    cin >> state;
+    // Input type of work
+    cout << "Enter the type of work (A, B, C): ";
+    cin >> typeOfWork;
 
-    // Check the first letter of the abbreviation
-    switch (state[0]) {
+    // Input the value of x
+    cout << "Enter the value of x: ";
+    cin >> x;
+
+    double payment, taxRate, tax, netPayment;
+
+    // Calculate payment based on the type of work
+    switch (typeOfWork) {
     case 'A':
-        if (state[1] == 'L') {
-            cout << "Alabama";
-        }
-        else if (state[1] == 'R') {
-            cout << "Arkansas";
-        }
-        else {
-            cout << "Abbreviation entered incorrectly";
-            goto error;
-        }
+        payment = 100 * fabs(cos(x) * cos(x) * sin(2 * x - 1) + 4.29 * (6) + 50);
+        taxRate = 0.10;
         break;
     case 'B':
-        if (state[1] == 'C') {
-            cout << "North Carolina";
-        }
-        else if (state[1] == 'D') {
-            cout << "Kentucky";
-        }
-        else {
-            cout << "Abbreviation entered incorrectly";
-            goto error;
-        }
+        payment = 150 * fabs(cos(x * x + 1) - fabs(sin(2 * x) - 5.76) + 100);
+        taxRate = 0.15;
         break;
-        
+    case 'C':
+        payment = 200 * fabs(sin(x) - pow(cos(x), 3) * sin(x * x - 4.2) + 4.27 + 135);
+        taxRate = 0.20;
+        break;
     default:
-        cout << "Abbreviation entered incorrectly";
-        goto error;
+        cerr << "Invalid type of work. Enter A, B, or C." << endl;
+        return 1;  // Return an error
     }
 
-    return 0;
+    // Calculate tax and net payment
+    tax = payment * taxRate;
+    netPayment = payment - tax;
 
-error:
-    cout << "Enter the abbreviation again: ";
-    cin >> state;
-    goto start;
+    // Output the results
+    cout << "Accrued amount: " << payment << endl;
+    cout << "Tax amount (" << (taxRate * 100) << "%): " << tax << endl;
+    cout << "Amount to be paid: " << netPayment << endl;
+
+    return 0;
 }
