@@ -7,4 +7,5 @@ Task:
 Result:
 
 
-![Uploading image.png…]()
+![image](https://github.com/Zoro2210/programming/assets/139787644/5c3fcb95-8ceb-4caf-88f8-5c21a281e4e6)
+
