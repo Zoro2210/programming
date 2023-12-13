@@ -4,15 +4,40 @@
 using namespace std;
 
 int main() {
-    double z = 0;
+    // Your variant number
+    int i = 6;
 
-    for (int k = 6; k >= 1; --k) {
-        double a = abs(sin(12 * k) * cos(abs(2 * k) / 3) + 4.21);
-        double b = 2 * sin(k) * sin(2 * k - 1.5) * cos(2 * k + 1.5) - 6;
-        z += sin(a) + b;
+    // Calculation of values a, b, i, z
+    double a = 0.0;
+    double b = 1.0;
+    double z = 0.0;
+
+    for (int k = 1; k <= i; ++k) {
+        double x = k; // You may use a different value for x depending on your task
+
+        // Formula for a
+        double a_term = abs(sin(12 * x) * cos(abs(2 * x)) / (3 * abs(4.21)));
+        if (!isnan(a_term)) {
+            a += a_term;
+        }
+
+        // Formula for b
+        double b_term = 2 * sin(x) * sin(2 * x - 1.5) * cos(2 * x + 1.5) - 6 /
+            (pow(cos(x), 3.0 / 2.1) + pow(cos(x), 2.0 / 1.1) - 8.3 * sin(3 * x + 1));
+
+        if (!isnan(b_term) && !isinf(b_term)) {
+            b *= b_term;
+        }
     }
 
-    cout << "The value of variable z: " << z << endl;
+    // Calculation of the value z
+    z = sin(a) + b;
+
+    // Output the results
+    cout << "i: " << i << endl;
+    cout << "a: " << a << endl;
+    cout << "b: " << b << endl;
+    cout << "z: " << z << endl;
 
     return 0;
 }
